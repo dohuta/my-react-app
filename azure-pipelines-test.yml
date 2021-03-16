@@ -33,10 +33,10 @@ stages:
         command: 'custom'
         customCommand: 'run citest'
     - task: PublishCodeCoverageResults@1
-      displayName: 'Publish code coverage from $(System.DefaultWorkingDirectory)/coverage/clover.xml'
+      displayName: 'Publish code coverage from $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
       inputs:
         codeCoverageTool: Cobertura
-        summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/clover.xml'
+        summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
         reportDirectory: '$(System.DefaultWorkingDirectory)/coverage'
 - stage: Build
   displayName: Build and push stage

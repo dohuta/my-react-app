@@ -28,6 +28,10 @@ stages:
     pool: Default
     steps:
     - task: Npm@1
+      displayName: Run Npm install
+      inputs:
+        command: 'install'
+    - task: Npm@1
       displayName: Run CI Test
       inputs:
         command: 'custom'

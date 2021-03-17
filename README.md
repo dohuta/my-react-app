@@ -1,70 +1,283 @@
-# Getting Started with Create React App
+# Common Linux Commands
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To get list of params of each command, using this pattern: `<command> --help`
 
-## Available Scripts
+To get the version of command/package, using this pattern: `<command> --version`
 
-In the project directory, you can run:
+To run command as superuser, put `sudo` at the begining of line
 
-### `npm start`
+## Clear terminal screen
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`clear`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Print system info
 
-### `npm test`
+1. Print system info: `uname`
+2. Print all system info: `uname -a`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## List items in current folder
 
-### `npm run build`
+1. list items in current folder: `ls`
+2. list all items (including hidden items): `ls -a`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Change directory
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. go down to subfolder in current folder: `cd <foldername or path>`
+2. go up to parent of current folder: `cd ..`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Create folder
 
-### `npm run eject`
+`mkdir <folder name>`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Delete folder and its content
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`rm -Rf <folder name>`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Create file
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`touch <file>`
 
-## Learn More
+ex: `touch hello.js`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Delete file
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`rm <file name>`
 
-### Code Splitting
+## View running processes, threads, RAM usage, CPU usage...
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+`top`
 
-### Analyzing the Bundle Size
+to exit `top` press `Ctrl + C`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Install packages
 
-### Making a Progressive Web App
+`apt-get install <list of package names separated by whitespace>`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+or
 
-### Advanced Configuration
+`sudo apt-get install <list of package names separated by whitespace>`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Remove packages
 
-### Deployment
+`apt-get remove <list of package names separated by whitespace>`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+or
 
-### `npm run build` fails to minify
+`sudo apt-get remove <list of package names separated by whitespace>`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## List all using ports
+
+`netstat -tulpn | grep LISTEN`
+
+OR
+
+`sudo lsof -i -P -n | grep LISTEN`
+
+## Reboot system
+
+`reboot`
+
+## Shutdown system
+
+`shutdown -p`
+
+# Edit file in Terminal
+
+## using Nano
+
+1. Open file: `nano <filename>`
+2. Save changes: `Ctrl + S`
+3. Exit nano: `Ctrl + X`
+
+## using VIM
+
+1. Open file: `vi <filename>`
+2. Using arrow keys to move cursor
+3. Turn on edit mode: press `i`
+4. Exit edit mode: press Ecs
+5. Save changes and exit vim: type `:wq` and press Enter
+6. Exit and discard changes: type `:q!` and press Enter
+
+# DOCKER commands
+
+## List all containers
+
+1. Print running containers: `docker ps`
+2. Print all containers: `docker ps -a`
+
+## List all images
+
+`docker images`
+
+OR
+
+`docker images --all`
+
+## Build image from docker file
+
+`docker build <docker file or path to docker file>`
+
+## Remove images
+
+`docker rmi <images>`
+OR
+`docker rmi -f <images>`
+
+## Create container
+
+`docker create <image name>`
+
+## Remove containers
+
+`docker rm <containers>`
+OR
+`docker rm -f <containers>`
+
+## Copy files/folders between containers and localsystem
+
+`docker cp <container>:<path to file/folder> <destination in localsystem>`
+
+## Start containers
+
+`docker start <container ids or names>`
+
+## Stop containers
+
+`docker stop <container ids or names>`
+
+## Run a command inside a container
+
+`docker exec <container> <command>`
+
+## Show running process in container
+
+`docker top <container>`
+
+## Show logs of container
+
+    `docker logs <container>`
+
+## Clean all docker images and containers
+
+    `docker system prune --all`
+
+# Docker-compose commands
+
+docker-compose allow us to define and run multi-container with docker.
+
+We can define containers in one file named `docker-compose.yml`.
+
+When we run command `docker-compose up`, docker will automatically pull all images, create containers, and run it.
+
+To stop all defined containers, just run `docker-compose down`.
+
+Note that `docker-compose` only runs on a file same name as `docker-compose`.
+
+# Node commands
+
+Using param `--global` to run node command on global/root node
+
+Print node version, run `node --version`
+
+Print npm version, run `npm --version`
+
+Print nvm version, run `nvm --version`
+
+## Install node-modules and packages that declared in package.json
+
+    `npm install`
+
+## Install packages
+
+    `npm install <package names>`
+
+To save packages need for development, using `--save-dev`
+
+## Remove packages
+
+    `npm uninstall <package names>`
+
+## List all packages in current node/project
+
+`npm ls`
+
+# Shortcut keys in Ubuntu
+
+## terminal
+
+copy
+
+    ctrl + shift + C
+
+paste
+
+    ctrl + shift + V
+
+switch between workspaces
+
+    ctrl + alt + arrow(up, down, left, right)
+
+move selected Window to other workspaces
+
+    ctrl + shift + alt + arrow(up, down, left, right)
+
+## VSCODE
+
+format code
+
+    shift + alt + F
+
+save current file
+
+    ctrl + S
+
+move lines/carrets
+
+    select lines and press: `alt + arrow(up, down, left, right)
+
+copy lines
+
+    select lines and press: `ctrl + shift + arrow(up, down, left, right)
+
+quick select a word
+
+    ctrl + shift + arrow(left, right)
+
+insert another cursor
+
+    shift + alt + arrow(up, down)
+
+edit multiple words
+
+    select to-be-edited word and press: ctrl + D
+
+
+#INSTALL DOCKER & COMPOSE ON UBUNTU
+
+	sudo apt update
+	sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable edge test"
+
+	sudo apt-get update
+	apt-cache policy docker-ce
+	sudo apt-get install -y docker-ce
+
+docker status:
+
+	sudo systemctl status docker
+
+grant permission:
+
+	sudo usermod -aG docker $(whoami)
+
+###subsequent starting group of services, use EITHER one of these:
+
+	docker-compose up
+		hit Ctrl+C to stop
+
+	docker-compose up --detach
+		docker-compose stop
+
+	docker-compose start
+		docker-compose stop

@@ -15,7 +15,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "citest": "CI=true npm test -- --coverage",
+    "citest": "CI=true npm test -- --maxWorkers=3 --colors --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,6 +34,11 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "coverageReporters": [
+      "cobertura"
     ]
   }
 }
